@@ -85,7 +85,7 @@ URL: http://127.0.0.1:8000/api/products
 
 ### Update Product
 Method: PUT
-URL: http://127.0.0.1:8000/api/products/1
+URL: http://127.0.0.1:8000/api/products/{id}
 Headers: Content-Type: application/json
 ```
 
@@ -97,7 +97,9 @@ Body:
 
 ### Delete Product
 Method: DELETE
-URL: http://127.0.0.1:8000/api/products/1
+URL: http://127.0.0.1:8000/api/products/{id}
 
+### Screenshots
+API testing screenshots untuk assignment boleh tengok dalam folder screenshots/
 
 **Author:** Hairul Fitri Mohd Dawan
