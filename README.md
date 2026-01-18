@@ -1,87 +1,109 @@
-# Inventory Hub API
+📦 Inventory Hub API
 
-A professional RESTful API for managing product inventory, built with **Laravel 12** and **PostgreSQL**. This project features secure Authentication and Role-Based Access Control (RBAC).
+A professional RESTful API for managing product inventory, built with Laravel 12 and PostgreSQL.
+This project implements secure authentication and Role-Based Access Control (RBAC) using Laravel best practices.
 
-## Requirements
-* PHP >= 8.2
-* Composer
-* PostgreSQL
-* Laravel 12
+⸻
 
-## Setup Instructions
+# Tech Stack
+	•	Laravel 12
+	•	PHP 8.2+
+	•	PostgreSQL
+	•	Laravel Sanctum (Token Authentication)
+	•	Spatie Laravel Permission (RBAC)
 
-### 1. Install Dependencies
-```bash
+⸻
+
+# Requirements
+	•	PHP >= 8.2
+	•	Composer
+	•	PostgreSQL
+	•	Laravel 12
+
+⸻
+
+# Setup Instructions
+
+## Install Dependencies
 composer install
-```
 
-### 2. Environment Configuration
-Copy the .env.example file to .env and update your database credentials:
-```bash
+
+⸻
+
+## Environment Configuration
+Copy the example environment file and update your database credentials:
 cp .env.example .env
-```
 
-### 3. Database & Permissions Setup
+
+⸻
+
+## Application Key, Database & Seeders
 Run migrations and seeders to set up roles, permissions, and demo users:
-```bash
 php artisan key:generate
 php artisan migrate:fresh --seed
-```
 
-### 4. Run Server
-```bash
+
+⸻
+
+## Run the Development Server
 php artisan serve
-```
-
-## Authentication & Authorization (Part E)
-This project uses Laravel Sanctum for token-based authentication and Spatie Laravel Permission for access control.
 
 
-### Roles & Access Levels
+⸻
 
-======================================================
-ROLE    |   PERMISSIONS
-Admin   |   Full Access (View, Create, Update, Delete)
-Staff   |   Limited Access (View, Create, Update)
-Viewer  |   Read Only Access (View Only)
-======================================================
+# Authentication & Authorization
+This project uses:
+	•	Laravel Sanctum for token-based authentication
+	•	Spatie Laravel Permission for role & permission management
 
+⸻
 
-### Demo Accounts (For Testing)
-Use these in Bruno to test different access levels:
-
-* Admin: admin@mail.com | password123
-* Viewe: viewer@mail.com | password123
-
+# Roles & Access Levels
+Role	Permissions
+Admin	View, Create, Update, Delete (Full Access)
+Staff	View, Create, Update
+Viewer	View Only (Read Access)
 
 
-## API Endpoints
+⸻
+
+# Demo Accounts (For Testing)
+Use these accounts in Bruno / Postman:
+
+Role	Email	        Password
+Admin	admin@mail.com	password123
+Viewer	viewer@mail.com	password123
 
 
-### 1. Authentication
- 
-======================================================
-Method  |  URL                  |   Description
-POST    |  /api/auth/register   |   Register a new user
-POST    |  /api/auth/login      |   Login and receive Bearer Token
-GET     |  /api/auth/me         |   Get current user info (Auth required)
-POST    |  /api/auth/logout     |   Revoke token (Auth required)
-======================================================
+⸻
+
+# API Endpoints
+
+## Authentication
+Method	Endpoint	Description
+POST	/api/auth/register	Register a new user
+POST	/api/auth/login	Login & receive Bearer token
+GET	    /api/auth/me	Get authenticated user info
+POST	/api/auth/logout	Revoke current token
 
 
-### 2. Products (Protected)
+⸻
 
-======================================================
-Method  |   URL                 |   Required Permission
-GET     |   /api/products       |   products-view
-POST    |   /api/products       |   products-create
-PUT     |   /api/products/{id}  |   products-update
-DELETE  |   /api/products/{id}  |   products-delete
-======================================================
-
-
-## Testing Screenshots
-All API testing screenshots as required for Assignment are located in the /screenshots folder.
+## Products (Protected Routes)
+Method	Endpoint	Required Permission
+GET	    /api/products	products-view
+POST	/api/products	products-create
+PUT	    /api/products/{id}	products-update
+DELETE	/api/products/{id}	products-delete
 
 
-Author: Hairul Fitri Mohd Dawan
+⸻
+
+# API Testing
+All API testing screenshots (as required for the assignment) are available in the:
+/screenshots folder.
+
+⸻
+
+# Author
+Hairul Fitri Mohd Dawan
