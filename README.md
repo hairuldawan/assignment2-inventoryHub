@@ -1,44 +1,31 @@
 # Inventory Hub API
 
-Simple REST API untuk manage products. Project ni buat guna Laravel dan PostgreSQL.
+A professional RESTful API for managing product inventory, built with **Laravel 12** and **PostgreSQL**. This project features secure Authentication and Role-Based Access Control (RBAC).
 
-Requirements
+## Requirements
+* PHP >= 8.2
+* Composer
+* PostgreSQL
+* Laravel 12
 
-PHP >= 8.2
-Composer
-PostgreSQL
-Laravel 12
-
-## Setup
+## Setup Instructions
 
 ### 1. Install Dependencies
 ```bash
 composer install
 ```
 
-### 2. Setup Environment
-
-Copy file `.env.example` jadi `.env`:
-
+### 2. Environment Configuration
+Copy the .env.example file to .env and update your database credentials:
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env` untuk database:
-
-```env
-DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_DATABASE=inventory_hub
-DB_USERNAME=postgres
-DB_PASSWORD=your_password
-```
-
-### 3. Generate Key & Setup Database
+### 3. Database & Permissions Setup
+Run migrations and seeders to set up roles, permissions, and demo users:
 ```bash
 php artisan key:generate
-php artisan migrate
+php artisan migrate:fresh --seed
 ```
 
 ### 4. Run Server
@@ -46,60 +33,55 @@ php artisan migrate
 php artisan serve
 ```
 
-API ready di: `http://127.0.0.1:8000`
+## Authentication & Authorization (Part E)
+This project uses Laravel Sanctum for token-based authentication and Spatie Laravel Permission for access control.
+
+
+### Roles & Access Levels
+
+======================================================
+ROLE    |   PERMISSIONS
+Admin   |   Full Access (View, Create, Update, Delete)
+Staff   |   Limited Access (View, Create, Update)
+Viewer  |   Read Only Access (View Only)
+======================================================
+
+
+### Demo Accounts (For Testing)
+Use these in Bruno to test different access levels:
+
+* Admin: admin@mail.com | password123
+* Viewe: viewer@mail.com | password123
+
+
 
 ## API Endpoints
 
-**Base URL:** `http://127.0.0.1:8000/api`
 
-| Method | URL | Kegunaan |
+### 1. Authentication
+ 
+======================================================
+Method  |  URL                  |   Description
+POST    |  /api/auth/register   |   Register a new user
+POST    |  /api/auth/login      |   Login and receive Bearer Token
+GET     |  /api/auth/me         |   Get current user info (Auth required)
+POST    |  /api/auth/logout     |   Revoke token (Auth required)
+======================================================
 
-| GET | `/products` | List semua products |
-| GET | `/products/1` | Detail product ID 1 |
-| POST | `/products` | Create product baru |
-| PUT | `/products/1` | Update product ID 1 |
-| DELETE | `/products/1` | Delete product ID 1 |
 
-## Test dengan Bruno
+### 2. Products (Protected)
 
-### Create Product
-Method: POST
-URL: http://127.0.0.1:8000/api/products
-Headers: Content-Type: application/json
-```
+======================================================
+Method  |   URL                 |   Required Permission
+GET     |   /api/products       |   products-view
+POST    |   /api/products       |   products-create
+PUT     |   /api/products/{id}  |   products-update
+DELETE  |   /api/products/{id}  |   products-delete
+======================================================
 
-Body:
-json
-{
-    "name": "Laptop Dell",
-    "description": "Business laptop",
-    "price": 4500.00,
-    "stock": 10
-}
-```
 
-### Get All Products
-Method: GET
-URL: http://127.0.0.1:8000/api/products
-```
+## Testing Screenshots
+All API testing screenshots as required for Assignment are located in the /screenshots folder.
 
-### Update Product
-Method: PUT
-URL: http://127.0.0.1:8000/api/products/{id}
-Headers: Content-Type: application/json
-```
 
-Body:
-{
-    "name": "Laptop Dell XPS",
-    "price": 5000.00
-}
-
-### Delete Product
-Method: DELETE
-URL: http://127.0.0.1:8000/api/products/{id}
-
-### Screenshots
-API testing screenshots untuk assignment boleh tengok dalam folder screenshots/
-
-**Author:** Hairul Fitri Mohd Dawan
+Author: Hairul Fitri Mohd Dawan
